@@ -117,6 +117,8 @@ const contacts = (cv ? cv.contact.split("|").map((s) => s.trim()) : []).filter(B
       <header class="masthead">
         <div class="masthead-grid">
           <div>
+            <img class="portrait" src="/portrait.jpg" width="104" height="104"
+             alt="Illustrated portrait of Amin Al Ali Al Darwish" />
             <div class="eyebrow">Curriculum vitae</div>
             <h1>{cv.name}</h1>
             <p class="role-line"><strong>{lead}</strong>{rest.map((r) => <Fragment> &middot; {r}</Fragment>)}</p>
