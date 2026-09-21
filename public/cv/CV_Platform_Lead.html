@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Amin Al Ali Al Darwish</title>
+  <style>
+    @page { size: A4; margin: 10mm 9mm; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      color: #111827;
+      background: white;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      font-size: 10.7px;
+      line-height: 1.34;
+    }
+    .resume {
+      width: 100%;
+      margin: 0 auto;
+      border-top: 3px solid #111;
+      padding-top: 8px;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 34px;
+      line-height: 1;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+    .headline {
+      margin: 4px 0 0;
+      color: #0b66c3;
+      font-size: 21px;
+      font-weight: 700;
+      line-height: 1.08;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+    .meta {
+      margin: 5px 0 0;
+      color: #1f2937;
+      font-size: 13.5px;
+      font-weight: 600;
+      line-height: 1.15;
+      overflow-wrap: anywhere;
+      word-break: normal;
+    }
+
+    .grid {
+      margin-top: 10px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.62fr) minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+    }
+    .right {
+      border-left: 1px solid #d1d5db;
+      padding-left: 12px;
+    }
+    .section {
+      margin-bottom: 12px;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+    .section-title {
+      margin: 0 0 7px;
+      padding-bottom: 3px;
+      border-bottom: 2px solid #111827;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+    .section-body p {
+      margin: 0 0 5px;
+      overflow-wrap: anywhere;
+      word-break: normal;
+    }
+    .section-body .meta {
+      margin: 0 0 4px;
+      font-size: 10.6px;
+      color: #111;
+      font-weight: 700;
+    }
+    .item-title {
+      margin: 2px 0 4px;
+      font-size: 11.8px;
+      line-height: 1.18;
+      font-weight: 800;
+      overflow-wrap: anywhere;
+    }
+    .spacer { height: 3px; }
+
+    .bullets {
+      margin: 0 0 6px;
+      padding-left: 15px;
+      list-style: disc;
+      list-style-position: outside;
+    }
+    .bullets li {
+      margin: 0 0 4px;
+      padding-left: 2px;
+      overflow-wrap: anywhere;
+      word-break: normal;
+    }
+
+    .skills .skill-row {
+      padding: 5px 0;
+      border-bottom: 1px solid #e5e7eb;
+      break-inside: avoid;
+    }
+    .skills .skill-head {
+      color: #0b66c3;
+      font-weight: 800;
+      margin-bottom: 2px;
+      font-size: 10.8px;
+      overflow-wrap: anywhere;
+    }
+    .skills .skill-text {
+      font-size: 10.4px;
+      color: #111827;
+      overflow-wrap: anywhere;
+    }
+
+    .built-stamp { opacity: .65; font-size: .92em; margin-top: 1px; }
+
+    /* preserve original content completely; only visual formatting */
+    .certifications .bullets { margin-bottom: 2px; }
+  </style>
+</head>
+<body>
+  <div class="resume">
+    <header class="header">
+      <h1>Amin Al Ali Al Darwish</h1>
+      <div class="headline"><strong>Head of Platform | Platform Engineering Lead | Senior Platform Engineer</strong></div>
+      <div class="meta">Vacoas, Mauritius | +230 5735 8608 | aminaliali8@gmail.com | linkedin.com/in/aminaliali</div>
+      <div class="meta built-stamp">Updated September 2026</div>
+    </header>
+    <div class="grid">
+      <main class="left"><section class="section experience"><h2 class="section-title">Experience</h2><div class="section-body"><h3 class="item-title">Forward Earth GmbH - Platform Engineer (Contractor - Advisory &amp; Delivery)</h3><p class="meta"><strong>Apr 2026 - Present | Remote</strong></p><ul class="bullets"><li>Designed and validated a Kubernetes-based sandbox for running serverless (AWS Lambda) workloads on developer machines, nesting it inside its own container runtime to work around a known tooling limitation; proved it with live event-bus and object-storage integration, then scaled it to a full serverless microservice.</li><li>Reverse-engineered and documented a large serverless architecture to support ongoing platform evolution, surfacing consolidation opportunities that informed roadmap planning.</li><li>Scoped preview/staging environment adapters for complex asynchronous data-processing flows, tracing production behavior across several codebases to fit existing orchestration logic.</li><li>Delivered a self-service local-development integration connecting a development environment to a remote backing service via an opt-in configuration flag, after evaluating multiple integration approaches.</li></ul><div class="spacer"></div><h3 class="item-title">Bunnyshell  -  Solutions Architect / DevOps Engineer (Power User)</h3><p class="meta"><strong>Sep 2021 - Feb 2026 | Remote (Mauritius / UK)</strong></p><ul class="bullets"><li>Designed and implemented reusable platform patterns for customer and internal teams, improving deployment consistency and reducing release variance across environments.</li><li>Standardized infrastructure with Terraform modules, Helm charts, Kubernetes manifests, and Docker baselines, reducing environment setup variance and cutting provisioning effort by an estimated 10-20%.</li><li>Improved delivery flow using GitHub Actions, GitLab CI, CircleCI, and Argo CD; reduced manual release toil by an estimated 10-20%.</li><li>Built platform operations discipline across multi-cloud environments through monitoring, incident handling, and documented runbooks, improving incident response readiness and recovery speed (estimated 10-15% MTTR improvement).</li><li>Authored internal tutorials and operational guides to improve platform adoption and shorten onboarding by an estimated 10-15%.</li></ul><div class="spacer"></div><h3 class="item-title">edirect  -  DevOps Engineer (Bespoke Project Lead)</h3><p class="meta"><strong>Apr 2020 - Aug 2021 | Liverpool, UK</strong></p><ul class="bullets"><li>Led large-scale migration execution (600+ websites) with controlled cutovers, maintaining high availability and minimizing downtime across waves.</li><li>Improved cloud cost posture while maintaining reliability through practical infrastructure optimizations (estimated 8-15% savings).</li><li>Implemented reusable migration runbooks and operational guardrails, reducing cutover-related incidents by an estimated 10-15% while improving platform scalability and change consistency.</li></ul><div class="spacer"></div><div class="spacer"></div><h3 class="item-title">A4D World  -  Full Stack Developer / DevOps (Freelance)</h3><p class="meta"><strong>Jan 2019 - May 2020</strong></p><ul class="bullets"><li>Delivered end-to-end web solutions from design and implementation through deployment and production support across backend and frontend stacks.</li><li>Built and maintained backend services using Laravel and Node.js, and frontend applications using React, Vue, and vanilla JavaScript.</li><li>Supported releases and production stability across monolithic and containerized environments, improving deployment consistency and issue resolution.</li></ul><div class="spacer"></div><h3 class="item-title">Above The Fold  -  Backend Developer</h3><p class="meta"><strong>Mar 2017 - Jan 2019 | Beirut, Lebanon</strong></p><ul class="bullets"><li>Developed backend services, APIs, and integrations using PHP (Laravel/Symfony) and Node.js.</li><li>Managed Linux infrastructure on Ubuntu VMs, including deployment support, monitoring, and production operations.</li><li>Contributed to backend architecture and technical decision-making to improve maintainability and long-term scalability.</li></ul><div class="spacer"></div></div></section><section class="section "><h2 class="section-title">Selected Outcomes</h2><div class="section-body"><ul class="bullets"><li>Delivered multi-cloud platform standards that improved reliability and increased engineering consistency across teams.</li><li>Enabled faster software shipping through reusable platform modules and workflow standardization, reducing delivery friction by an estimated 10-15%.</li><li>Combined architecture intent with operational ownership to keep platforms scalable, operable, and resilient under change.</li></ul><div class="spacer"></div></div></section></main>
+      <aside class="right"><section class="section "><h2 class="section-title">Summary</h2><div class="section-body"><p>Platform engineering leader focused on building internal developer platforms (IDP), standardizing cloud environments, and improving software delivery reliability at scale. Hands-on across AWS, Azure, GCP, and DigitalOcean with strong execution in Kubernetes, Terraform, GitOps, CI/CD, and SRE operations. Delivers paved-road platform capabilities, reusable modules, and governance guardrails that reduce engineering toil and accelerate delivery.</p><div class="spacer"></div></div></section><section class="section "><h2 class="section-title">Certifications</h2><div class="section-body"><ul class="bullets"><li><strong>Certified Kubernetes Administrator (CKA)</strong></li><li><strong>NLP Practitioner Certification</strong></li><li><strong>Ansible Mastery Certification</strong></li></ul><div class="spacer"></div></div></section><section class="section skills"><h2 class="section-title">Skills</h2><div class="section-body"><div class="skill-row"><div class="skill-head">Internal Platform Engineering</div><div class="skill-text">IDP thinking, self-service patterns, environment templates, standardized delivery workflows</div></div><div class="skill-row"><div class="skill-head">Cloud and Infrastructure</div><div class="skill-text">AWS, Azure, GCP, DigitalOcean, cloud operating models</div></div><div class="skill-row"><div class="skill-head">Platform Tooling</div><div class="skill-text">Kubernetes, Helm, Argo CD, Docker, Terraform, GitOps</div></div><div class="skill-row"><div class="skill-head">Delivery and Reliability</div><div class="skill-text">CI/CD, observability, SLO-aligned operations, incident management, postmortems, runbooks</div></div><div class="skill-row"><div class="skill-head">Governance</div><div class="skill-text">guardrails, policy-aware implementations, secure-by-default delivery patterns</div></div></div></section></aside>
+    </div>
+  </div>
+</body>
+</html>

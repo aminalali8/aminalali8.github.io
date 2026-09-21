@@ -334,3 +334,29 @@
 @media (max-width: 620px) {
   .post-row { grid-template-columns: 1fr; gap: 8px; }
 }
+
+/* The CV export rendered in place - see src/pages/cv.astro for the scaling. */
+.cv-sheet {
+  margin-top: 26px;
+  padding: 18px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  box-shadow: var(--shadow);
+}
+.cv-box { height: 1500px; }
+.cv-sheet iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  transform-origin: top left;
+}
+.cv-fallback { margin-top: 12px; font-size: 13px; color: var(--muted); }
+.cv-fallback a { color: var(--accent-ink); }
+
+@media (max-width: 620px) {
+  .cv-sheet { padding: 12px; }
+}

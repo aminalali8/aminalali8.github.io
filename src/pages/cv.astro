@@ -1,33 +1,42 @@
 ---
 import Base from "../layouts/Base.astro";
 
-// Rendered from the markdown in ../Personal/cv, copied here by `npm run sync`,
-// so the page and the PDFs can never describe different careers.
-const files = import.meta.glob("../content/cv/*.md", { eager: true });
-const entries = Object.entries(files).map(([p, mod]) => [p.split("/").pop(), mod]);
-const primary =
-  entries.find(([name]) => name === "CV_Platform_Lead.md") ??
-  entries.find(([name]) => name === "CV_Master.md") ??
-  entries[0];
-const Content = primary ? primary[1].Content : null;
-const pdfs = entries.map(([name]) => name.replace(/\.md$/, ".pdf"));
-const label = (f) => f.replace(/^CV_/, "").replace(/\.pdf$/, "").replace(/_/g, " ");
+// The CV is written in ../Personal/cv and exported to HTML + PDF by the vault's
+// build script; `npm run sync` copies both into public/cv. The markdown files
+// are only the manifest - one per CV - because the HTML export is the same
+// document as the PDF, which the markdown render was never going to match.
+// It is shown in an iframe so the export's print stylesheet and the site's
+// stylesheet cannot reach into each other.
+const names = Object.keys(import.meta.glob("../content/cv/*.md"))
+  .map((p) => p.split("/").pop().replace(/\.md$/, ""))
+  .sort();
+const primary = names.includes("CV_Platform_Lead") ? "CV_Platform_Lead" : names[0];
+const label = (n) => n.replace(/^CV_/, "").replace(/_/g, " ");
 ---
 <Base title="CV - Amin Al Ali Al Darwish" description="Platform and infrastructure engineering CV - full experience, skills and certifications." path="/cv">
   <section>
     <div class="sec-head">
       <h2>Curriculum vitae</h2>
-      <span class="count">pdf below</span>
+      <span class="count">{primary ? label(primary) : "not synced"}</span>
     </div>
 
-    {pdfs.length > 0 && (
+    {names.length > 0 && (
       <div class="downloads">
-        {pdfs.map((f) => <a href={`/cv/${f}`} download>{label(f)} &darr; PDF</a>)}
+        {names.map((n) => <a href={`/cv/${n}.pdf`} download>{label(n)} &darr; PDF</a>)}
       </div>
     )}
 
-    {Content ? (
-      <div class="prose" style="margin-top: 28px;"><Content /></div>
+    {primary ? (
+      <Fragment>
+        <div class="cv-sheet" data-cv-sheet>
+          <div class="cv-box" data-cv-box>
+            <iframe src={`/cv/${primary}.html`} title={`${label(primary)} CV`} scrolling="no"></iframe>
+          </div>
+        </div>
+        <p class="cv-fallback">
+          <a href={`/cv/${primary}.html`} target="_blank" rel="noopener">Open the CV on its own page &rarr;</a>
+        </p>
+      </Fragment>
     ) : (
       <p class="lede" style="margin-top: 28px;">
         Run <code>npm run sync</code> to pull the CV in from the vault.
@@ -35,3 +44,49 @@ const label = (f) => f.replace(/^CV_/, "").replace(/\.pdf$/, "").replace(/_/g, "
     )}
   </section>
 </Base>
+
+<script>
+  // The export is drawn for a 794px-wide A4 page at a print font size, so it is
+  // scaled to the column instead of shown at 1:1 (unreadably small on a desktop
+  // column, overflowing on a phone). Below MIN the text stops being legible, so
+  // the sheet scrolls sideways rather than shrinking further - which is what a
+  // narrow screen gets. Without JS the iframe still renders, just unscaled.
+  const A4 = 794;
+  const MIN = 0.85;
+  const MAX = 1.35;
+
+  const sheet = document.querySelector("[data-cv-sheet]");
+  const box = sheet?.querySelector("[data-cv-box]");
+  const frame = box?.querySelector("iframe");
+
+  if (sheet && box && frame) {
+    const fit = () => {
+      const doc = frame.contentDocument;
+      if (!doc?.body) return;
+      const style = getComputedStyle(sheet);
+      const gutters = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
+      const scale = Math.min(Math.max((sheet.clientWidth - gutters) / A4, MIN), MAX);
+
+      // Width first: measured at any other width the two-column grid reflows and
+      // reports a height that has nothing to do with what ends up on screen.
+      // Height 0 then makes the document report its own height rather than the
+      // frame's.
+      frame.style.width = `${A4}px`;
+      frame.style.transform = `scale(${scale})`;
+      frame.style.height = "0px";
+      const height = Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight);
+      frame.style.height = `${height}px`;
+      // transform does not change layout size, so the box carries the scaled
+      // footprint - that is what gives the sheet its height and scroll extent.
+      box.style.width = `${A4 * scale}px`;
+      box.style.height = `${height * scale}px`;
+    };
+
+    frame.addEventListener("load", () => {
+      fit();
+      // Fonts settle after load and change the height, so re-fit on any reflow.
+      new ResizeObserver(fit).observe(frame.contentDocument.body);
+    });
+    window.addEventListener("resize", fit);
+  }
+</script>

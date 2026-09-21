@@ -45,8 +45,9 @@ description: One line for the blog index and the RSS feed.
   local builds, export `GITHUB_USER=<your username>` (otherwise absolute URLs in
   og:image and the RSS feed point at `username.github.io`).
 - In the repo: Settings -> Pages -> Source: **GitHub Actions**.
-- Refresh the CV PDFs with `node ../Personal/scripts/build_html_pdf.js`; the
-  sync step copies them into `public/cv/` on every build.
+- Refresh the CV exports with `node ../Personal/scripts/build_html_pdf.js`; the
+  sync step copies the HTML and the PDFs into `public/cv/` on every build. The
+  CV page embeds the HTML export - the markdown is only the manifest.
 - `npm install` needs to run once locally; CI installs on its own.
 
 ## Obsidian
