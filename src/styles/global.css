@@ -343,7 +343,13 @@
 }
 .nav a { color: var(--muted); text-decoration: none; letter-spacing: .04em; text-transform: uppercase; }
 .nav a:hover, .nav a[aria-current="page"] { color: var(--accent-ink); }
-.nav .brand { color: var(--ink); font-weight: 500; margin-right: auto; text-transform: none; letter-spacing: 0; }
+/* A monogram, not the name: the masthead h1 right below already says it in
+   full, and a nav repeating it is the same word twice in 100px. */
+.nav .brand {
+  color: var(--ink); font-weight: 700; margin-right: auto;
+  letter-spacing: .12em; font-size: 13.5px;
+}
+.nav .brand:hover { color: var(--accent-ink); }
 /* Theme switch. The rest of the nav is mono capitals, so the control earns its
    place by being the one object in the bar - a hairline track, an accent thumb
    that carries the active icon, and a single travel on click. */
