@@ -1,5 +1,5 @@
 # Amin Al Ali Al Darwish
-**Head of Platform | Platform & Agentic AI Engineer | Solutions Architect**  
+**Platform Engineer | Agentic AI Systems | Solutions Architect**  
 Vacoas, Mauritius | +230 5735 8608 | aminaliali8@gmail.com | linkedin.com/in/aminaliali
 
 ## Summary
