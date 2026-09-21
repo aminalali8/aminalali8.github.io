@@ -91,8 +91,8 @@ import Base from "../layouts/Base.astro";
         <div class="where"><span class="org">Forward Earth</span>2026</div>
         <div>
           <h3>Guardrails shaped like the blast radius</h3>
-          <p>Every team that puts a coding agent near a real system reaches for the same guardrail: a list of paths it must not touch. It reads like a permission model and isn't one. An agent told to stay inside <code>service-a</code> obeys, then relaxes a field on a response and stops emitting an event it judged redundant. <code>service-b</code>'s files are byte-identical. <code>service-b</code> is broken.</p>
-          <p>The constraint was written in the filesystem's vocabulary; the blast radius lives in the network's. So the guardrails moved to where the damage actually travels — contracts, events and the edges between services rather than directories.</p>
+          <p>Path-based guardrails do not hold across service boundaries. An agent told to stay inside <code>service-a</code> obeys, then relaxes a field on a response and stops emitting an event it judged redundant — <code>service-b</code>'s files are byte-identical and <code>service-b</code> is broken.</p>
+          <p>Defined the constraints in the vocabulary the damage actually travels in: contracts, events and the edges between services, rather than directories.</p>
           <div class="tags"><span class="tag">Coding agents</span><span class="tag">Guardrails</span><span class="tag">Service contracts</span><span class="tag">Blast radius</span></div>
         </div>
       </article>
@@ -101,8 +101,8 @@ import Base from "../layouts/Base.astro";
         <div class="where"><span class="org">Forward Earth</span>2026 &middot; in progress</div>
         <div>
           <h3>Two agents, two sources of truth</h3>
-          <p>Production intent lives in CDK. The local simulation lives in SAM and LocalStack. Keeping them honest is a reconciliation problem, so it gets two narrow agents instead of one that holds both: one reads the CDK, one reads the local stack, and each emits the same event-flow schema — resources, edges, configuration, confidence.</p>
-          <p>The diff between those documents is plain code, not a language model, and the agents only speak through a closed set of typed questions. That is what gives the loop a termination condition instead of two agents talking past each other forever.</p>
+          <p>Production intent lives in CDK, the local simulation in SAM and LocalStack. Reconciling them takes two narrow agents rather than one holding both contexts: one reads the CDK, one reads the local stack, and each emits the same event-flow schema of resources, edges, configuration and confidence.</p>
+          <p>The diff between those two documents is plain code rather than a language model, and the agents exchange only a closed set of typed questions — which is what gives the loop a termination condition.</p>
           <div class="tags"><span class="tag">Multi-agent</span><span class="tag">AWS CDK</span><span class="tag">LocalStack</span><span class="tag">SAM</span><span class="tag">Schema-first</span></div>
         </div>
       </article>
@@ -139,8 +139,8 @@ import Base from "../layouts/Base.astro";
         <div class="where"><span class="org">Bunnyshell</span>2021 &ndash; 2026</div>
         <div>
           <h3>Dockerfiles written by reading the repo</h3>
-          <p>Getting a service into an environment starts with a Dockerfile, and most repositories arrive without one. An agentic system reads the codebase instead — language, package manager, build steps, entrypoint — and writes the Dockerfile, so a repository can be containerized without someone hand-authoring a build file first.</p>
-          <p>I helped build it, shaped the approach, and spent most of my time on the part that decides whether it is real: validating the output against actual project structures rather than the tidy ones.</p>
+          <p>Contributed to an agentic system that reads a repository — language, package manager, build steps, entrypoint — and writes its Dockerfile, so a service can be containerized without one being hand-authored first.</p>
+          <p>Shaped the approach and validated the generated output against real project structures rather than clean examples, which is where generated build files tend to fail.</p>
           <div class="tags"><span class="tag">Agentic AI</span><span class="tag">Code analysis</span><span class="tag">Docker</span><span class="tag">Containerization</span><span class="tag">Developer environments</span></div>
         </div>
       </article>
