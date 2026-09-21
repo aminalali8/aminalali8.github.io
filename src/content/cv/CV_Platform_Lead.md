@@ -3,7 +3,7 @@
 Vacoas, Mauritius | +230 5735 8608 | aminaliali8@gmail.com | linkedin.com/in/aminaliali
 
 ## Summary
-Platform engineering leader focused on building internal developer platforms (IDP), standardizing cloud environments, and improving software delivery reliability at scale. Hands-on across AWS, Azure, GCP, and DigitalOcean with strong execution in Kubernetes, Terraform, GitOps, CI/CD, and SRE operations. Delivers paved-road platform capabilities, reusable modules, and governance guardrails that reduce engineering toil and accelerate delivery. Now extending that work to agentic AI: coding agents operating in production codebases, MCP-based tooling, and agent guardrails scoped to architectural blast radius rather than file paths.
+Platform engineering leader who builds internal developer platforms (IDP) and standardizes multi-cloud environments so software delivery stays fast and reliable at scale. Hands-on across AWS, Azure, GCP and DigitalOcean, with deep execution in Kubernetes, Terraform, GitOps, CI/CD and SRE operations. Delivers paved-road platform capabilities, reusable infrastructure modules and governance guardrails that cut engineering toil, shorten lead time and improve developer experience. Extends the same discipline to agentic AI: coding agents working in production codebases, MCP servers and in-IDE tooling, and agent guardrails scoped to architectural blast radius rather than file paths.
 
 ## Core Skills
 **Internal Platform Engineering:** IDP thinking, self-service patterns, environment templates, standardized delivery workflows  
