@@ -99,6 +99,10 @@ const certs = cv
     })
   : [];
 
+// Break after the given name, so the line does not fall inside "Al Ali Al
+// Darwish". Split on the first space rather than hard-coding the two halves.
+const [given, ...family] = cv ? cv.name.split(/\s+/) : [];
+
 // The headline reads "A | B | C"; the first claim carries the weight.
 const [lead, ...rest] = cv ? cv.headline.split("|").map((s) => s.trim()) : [];
 
@@ -120,7 +124,7 @@ const contacts = (cv ? cv.contact.split("|").map((s) => s.trim()) : []).filter(B
             <img class="portrait" src="/portrait.jpg" width="104" height="104"
              alt="Illustrated portrait of Amin Al Ali Al Darwish" />
             <div class="eyebrow">Curriculum vitae</div>
-            <h1>{cv.name}</h1>
+            <h1>{given}<br>{family.join(" ")}</h1>
             <p class="role-line"><strong>{lead}</strong>{rest.map((r) => <Fragment> &middot; {r}</Fragment>)}</p>
           </div>
           <div>
