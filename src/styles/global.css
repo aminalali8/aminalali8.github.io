@@ -177,20 +177,6 @@
     outline-offset: 2px;
   }
   .contact .k { color: var(--muted); }
-  /* The one link that starts a conversation, so it is filled rather than
-     outlined like the contact details beside it. */
-  .contact a.book {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: var(--paper);
-  }
-  .contact a.book .k { color: var(--paper); opacity: .7; }
-  .contact a.book:hover {
-    background: var(--accent-ink);
-    border-color: var(--accent-ink);
-    color: var(--paper);
-  }
-
   /* ---------- section frame ---------- */
   section { padding-block: 44px; border-bottom: 1px solid var(--line); }
   .sec-head {

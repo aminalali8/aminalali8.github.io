@@ -130,7 +130,6 @@ const contacts = (cv ? cv.contact.split("|").map((s) => s.trim()) : []).filter(B
           <div>
             {summary && <p class="lede">{summary}</p>}
             <div class="contact">
-              <a class="book" href="https://cal.com/aminad/30min" target="_blank" rel="noopener"><span class="k">cal</span> Let's talk</a>
               {contacts.map((c) =>
                 c.href ? (
                   <a href={c.href} target={c.k === "in" ? "_blank" : undefined} rel={c.k === "in" ? "noopener" : undefined}>
@@ -225,7 +224,6 @@ const contacts = (cv ? cv.contact.split("|").map((s) => s.trim()) : []).filter(B
       <footer>
         <h2>Elsewhere</h2>
         <div class="contact">
-          <a class="book" href="https://cal.com/aminad/30min" target="_blank" rel="noopener"><span class="k">cal</span> Let's talk</a>
           {contacts.filter((c) => c.href).map((c) => (
             <a href={c.href} target={c.k === "in" ? "_blank" : undefined} rel={c.k === "in" ? "noopener" : undefined}>
               <span class="k">{c.k}</span> {c.value}
