@@ -21,6 +21,14 @@ const ogImage = site ? new URL("og.png", site).href : "/og.png";
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+    <script is:inline>
+      // Inline and blocking on purpose: a stored theme has to be on <html>
+      // before the first paint, or the page flashes the other one.
+      try {
+        const stored = localStorage.getItem("theme");
+        if (stored) document.documentElement.dataset.theme = stored;
+      } catch {}
+    </script>
   </head>
   <body>
     <div class="wrap">
@@ -29,8 +37,37 @@ const ogImage = site ? new URL("og.png", site).href : "/og.png";
         <a href="/" aria-current={path === "/" ? "page" : undefined}>Portfolio</a>
         <a href="/cv" aria-current={path === "/cv" ? "page" : undefined}>CV</a>
         <a href="/blog" aria-current={path.startsWith("/blog") ? "page" : undefined}>Blog</a>
+        <button id="theme-toggle" class="theme-toggle" type="button" hidden>Dark</button>
       </nav>
       <slot />
     </div>
+    <script is:inline>
+      // No stored choice means follow the system, so "current" is read from the
+      // media query rather than kept in a variable of its own.
+      const root = document.documentElement;
+      const button = document.getElementById("theme-toggle");
+      const system = window.matchMedia("(prefers-color-scheme: dark)");
+      const current = () => root.dataset.theme || (system.matches ? "dark" : "light");
+
+      const paint = () => {
+        const next = current() === "dark" ? "light" : "dark";
+        button.textContent = next === "dark" ? "Dark" : "Light";
+        button.setAttribute("aria-label", `Switch to the ${next} theme`);
+      };
+
+      button.addEventListener("click", () => {
+        const next = current() === "dark" ? "light" : "dark";
+        root.dataset.theme = next;
+        try {
+          localStorage.setItem("theme", next);
+        } catch {}
+        paint();
+      });
+
+      system.addEventListener("change", paint);
+      paint();
+      // The button does nothing without this script, so it only appears with it.
+      button.hidden = false;
+    </script>
   </body>
 </html>
