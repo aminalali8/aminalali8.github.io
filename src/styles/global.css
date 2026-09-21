@@ -116,12 +116,19 @@
     font-size: 17px;
     max-width: 62ch;
   }
+  /* The lede opens the right-hand column, so its default paragraph margin would
+     drop it below the portrait it is meant to line up with. */
+  .masthead-grid .lede:first-child { margin-top: 0; }
 
   .masthead-grid {
     display: grid;
     grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
     gap: 40px;
-    align-items: end;
+    /* Both columns start at the top. Bottom-aligning made the shorter column
+       hang from the taller one, so the portfolio and the CV - which differ in
+       which column is taller - drifted in opposite directions. The narrow
+       breakpoint already aligned to start. */
+    align-items: start;
   }
 
   .contact {
@@ -289,7 +296,7 @@
   }
 
   @media (max-width: 880px) {
-    .masthead-grid { grid-template-columns: 1fr; gap: 26px; align-items: start; }
+    .masthead-grid { grid-template-columns: 1fr; gap: 26px; }
     .caps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .caps .cap:last-child:nth-child(2n + 1) { grid-column: span 2; }
   }
