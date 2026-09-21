@@ -12,11 +12,24 @@ const fmt = (d) =>
   <section>
     <div class="sec-head">
       <h2>Writing</h2>
-      <span class="count">{posts.length} {posts.length === 1 ? "post" : "posts"}</span>
+      <span class="count">{posts.length === 0 ? "coming soon" : `${posts.length} ${posts.length === 1 ? "post" : "posts"}`}</span>
     </div>
 
     {posts.length === 0 ? (
-      <p class="lede">No posts published yet.</p>
+      <div class="soon">
+        <div class="eyebrow">Coming soon</div>
+        <h3>The first posts are being written</h3>
+        <p>
+          Notes from platform engineering work: internal developer platforms,
+          preview and staging environments, delivery pipelines, and what running
+          serverless workloads locally actually costs you. Written up as the
+          problems get solved rather than on a schedule.
+        </p>
+        <div class="contact">
+          <a href="/rss.xml"><span class="k">rss</span> Subscribe to the feed</a>
+          <a href="mailto:aminaliali8@gmail.com"><span class="k">mail</span> aminaliali8@gmail.com</a>
+        </div>
+      </div>
     ) : (
       <div class="posts">
         {posts.map((post) => (
