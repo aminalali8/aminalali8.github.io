@@ -1,16 +1,17 @@
 # Amin Al Ali Al Darwish
-**Head of Platform | Platform Engineering Lead | Senior Platform Engineer**  
+**Head of Platform | Platform Engineering Lead | AI & Agentic Systems Engineer**  
 Vacoas, Mauritius | +230 5735 8608 | aminaliali8@gmail.com | linkedin.com/in/aminaliali
 
 ## Summary
-Platform engineering leader focused on building internal developer platforms (IDP), standardizing cloud environments, and improving software delivery reliability at scale. Hands-on across AWS, Azure, GCP, and DigitalOcean with strong execution in Kubernetes, Terraform, GitOps, CI/CD, and SRE operations. Delivers paved-road platform capabilities, reusable modules, and governance guardrails that reduce engineering toil and accelerate delivery.
+Platform engineering leader focused on building internal developer platforms (IDP), standardizing cloud environments, and improving software delivery reliability at scale. Hands-on across AWS, Azure, GCP, and DigitalOcean with strong execution in Kubernetes, Terraform, GitOps, CI/CD, and SRE operations. Delivers paved-road platform capabilities, reusable modules, and governance guardrails that reduce engineering toil and accelerate delivery. Now extending that work to agentic AI: coding agents operating in production codebases, MCP-based tooling, and agent guardrails scoped to architectural blast radius rather than file paths.
 
 ## Core Skills
 **Internal Platform Engineering:** IDP thinking, self-service patterns, environment templates, standardized delivery workflows  
 **Cloud and Infrastructure:** AWS, Azure, GCP, DigitalOcean, cloud operating models  
 **Platform Tooling:** Kubernetes, Helm, Argo CD, Docker, Terraform, GitOps  
 **Delivery and Reliability:** CI/CD, observability, SLO-aligned operations, incident management, postmortems, runbooks  
-**Governance:** guardrails, policy-aware implementations, secure-by-default delivery patterns
+**Governance:** guardrails, policy-aware implementations, secure-by-default delivery patterns  
+**AI and Agentic Engineering:** coding agents in production codebases, MCP server development, agent guardrails scoped to architectural blast radius, LLM application environments (LangChain, LlamaIndex)
 
 ## Professional Experience
 ### Forward Earth GmbH - Platform Engineer (Contractor - Advisory & Delivery)
@@ -19,6 +20,8 @@ Platform engineering leader focused on building internal developer platforms (ID
 - Reverse-engineered and documented a large serverless architecture to support ongoing platform evolution, surfacing consolidation opportunities that informed roadmap planning.
 - Scoped preview/staging environment adapters for complex asynchronous data-processing flows, tracing production behavior across several codebases to fit existing orchestration logic.
 - Delivered a self-service local-development integration connecting a development environment to a remote backing service via an opt-in configuration flag, after evaluating multiple integration approaches.
+- Applied coding agents to a large serverless estate, driving them to produce a confidence-scored event-flow map - triggers, transformations and fan-out between components - rather than a flat resource inventory, with unresolved edges flagged for human review.
+- Defined guardrails for coding agents working across service boundaries, scoping constraints to architectural blast radius rather than filesystem paths, after path-based rules proved unable to fence cross-service contract changes.
 
 ### Bunnyshell — Solutions Architect / DevOps Engineer (Power User)
 **Sep 2021 - Feb 2026 | Remote (Mauritius / UK)**
@@ -27,6 +30,7 @@ Platform engineering leader focused on building internal developer platforms (ID
 - Improved delivery flow using GitHub Actions, GitLab CI, CircleCI, and Argo CD; reduced manual release toil by an estimated 10-20%.
 - Built platform operations discipline across multi-cloud environments through monitoring, incident handling, and documented runbooks, improving incident response readiness and recovery speed (estimated 10-15% MTTR improvement).
 - Authored internal tutorials and operational guides to improve platform adoption and shorten onboarding by an estimated 10-15%.
+- Extended the platform to AI workloads with developer environment templates for LangChain and LlamaIndex stacks, an MCP server, and an in-IDE assistant extension.
 
 ### edirect — DevOps Engineer (Bespoke Project Lead)
 **Apr 2020 - Aug 2021 | Liverpool, UK**

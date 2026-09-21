@@ -1,9 +1,34 @@
 ---
 import "../styles/global.css";
 
-const { title, description = "Platform engineering, internal developer platforms, cloud infrastructure and reliability.", path = "/" } = Astro.props;
+const { title, description = "Platform engineering, internal developer platforms, cloud infrastructure, and agentic AI - coding agents, MCP servers and the guardrails they need.", path = "/" } = Astro.props;
 const site = Astro.site;
 const ogImage = site ? new URL("og.png", site).href : "/og.png";
+// Astro.url rather than the path prop: blog posts all pass path="/blog" for nav
+// highlighting, and every one of them canonicalising to /blog would be wrong.
+const canonical = site ? new URL(Astro.url.pathname, site).href : Astro.url.pathname;
+
+const person = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Amin Al Ali Al Darwish",
+  jobTitle: "Head of Platform - Platform & Agentic AI Engineer",
+  url: site ? site.href : canonical,
+  address: { "@type": "PostalAddress", addressLocality: "Vacoas", addressCountry: "MU" },
+  sameAs: ["https://linkedin.com/in/aminaliali", "https://github.com/aminalali8"],
+  knowsAbout: [
+    "Platform engineering",
+    "Internal developer platforms",
+    "Agentic AI",
+    "AI coding agents",
+    "Model Context Protocol",
+    "Kubernetes",
+    "Terraform",
+    "AWS",
+    "CI/CD",
+    "Site reliability engineering",
+  ],
+};
 ---
 <!doctype html>
 <html lang="en">
@@ -17,6 +42,9 @@ const ogImage = site ? new URL("og.png", site).href : "/og.png";
     <meta property="og:type" content="website" />
     <meta property="og:image" content={ogImage} />
     <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:url" content={canonical} />
+    <script type="application/ld+json" set:html={JSON.stringify(person)} is:inline />
     <link rel="alternate" type="application/rss+xml" title="A4D blog" href="/rss.xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

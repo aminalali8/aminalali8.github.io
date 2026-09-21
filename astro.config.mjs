@@ -1,8 +1,9 @@
 import { defineConfig } from "astro/config";
 
-// User site at the domain root. Set GITHUB_USER (or edit the fallback below)
-// before the first deploy - it is what makes og:image and the RSS feed absolute.
-const user = process.env.GITHUB_USER ?? "username";
+// User site at the domain root. CI sets GITHUB_USER from the repo owner; the
+// fallback is what local builds use. It has to be the real account, because a
+// canonical URL pointing at the wrong host is worse than none at all.
+const user = process.env.GITHUB_USER ?? "aminalali8";
 
 export default defineConfig({
   site: `https://${user}.github.io`,

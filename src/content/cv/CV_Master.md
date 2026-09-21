@@ -1,9 +1,9 @@
 # Amin Al Ali Al Darwish
-**Head of Platform | Senior DevOps/Platform Engineer | Solutions Architect**  
+**Head of Platform | Platform & Agentic AI Engineer | Solutions Architect**  
 Vacoas, Mauritius | +230 5735 8608 | aminaliali8@gmail.com | linkedin.com/in/aminaliali
 
 ## Summary
-Platform and infrastructure leader with hands-on delivery across AWS, Azure, GCP, and DigitalOcean. Designs and operates reliable cloud platforms that improve developer productivity, reduce operational toil, and increase delivery speed. Blends architecture, platform engineering, DevOps leadership, and customer-facing solution design with a strong focus on IaC, CI/CD, Kubernetes, SRE practices, and operational governance.
+Platform and infrastructure leader with hands-on delivery across AWS, Azure, GCP, and DigitalOcean. Designs and operates reliable cloud platforms that improve developer productivity, reduce operational toil, and increase delivery speed. Blends architecture, platform engineering, DevOps leadership, and customer-facing solution design with a strong focus on IaC, CI/CD, Kubernetes, SRE practices, and operational governance. Extends the same discipline to agentic AI: coding agents in production codebases, MCP servers and in-IDE assistants, and agent guardrails scoped to architectural blast radius.
 
 ## Core Skills Matrix
 **Cloud Platforms:** AWS, Azure, GCP, DigitalOcean, hybrid cloud patterns  
@@ -12,7 +12,8 @@ Platform and infrastructure leader with hands-on delivery across AWS, Azure, GCP
 **CI/CD and Release Engineering:** GitHub Actions, GitLab CI, CircleCI, progressive delivery patterns, GitOps  
 **Observability and Reliability (SRE):** SLO thinking, incident response, postmortems, runbooks, proactive monitoring  
 **Security and Governance:** guardrails, least-privilege mindset, security baked into delivery workflows  
-**Languages and Scripting:** Bash, Go, Python, PHP, Node.js, Java
+**Languages and Scripting:** Bash, Go, Python, PHP, Node.js, Java  
+**AI and Agentic Engineering:** coding agents in production codebases, MCP servers, in-IDE assistants, agent guardrails and blast-radius scoping, LLM application environments (LangChain, LlamaIndex)
 
 ## Professional Experience
 ### Forward Earth GmbH - Platform Engineer (Contractor - Advisory & Delivery)
@@ -21,6 +22,8 @@ Platform and infrastructure leader with hands-on delivery across AWS, Azure, GCP
 - Reverse-engineered and documented a large serverless architecture to support ongoing platform evolution, surfacing consolidation opportunities that informed roadmap planning.
 - Scoped preview/staging environment adapters for complex asynchronous data-processing flows, tracing production behavior across several codebases to fit existing orchestration logic.
 - Delivered a local-development integration connecting a development environment to a remote backing service via an opt-in configuration flag, after evaluating multiple integration approaches.
+- Applied coding agents to a large serverless estate, driving them to produce a confidence-scored event-flow map - triggers, transformations and fan-out between components - rather than a flat resource inventory, with unresolved edges flagged for human review.
+- Defined guardrails for coding agents working across service boundaries, scoping constraints to architectural blast radius rather than filesystem paths, after path-based rules proved unable to fence cross-service contract changes.
 
 ### Bunnyshell — Solutions Architect / DevOps Engineer (Power User)
 **Sep 2021 - Feb 2026 | Remote (Mauritius / UK)**
@@ -30,6 +33,7 @@ Platform and infrastructure leader with hands-on delivery across AWS, Azure, GCP
 - Owned production operations across AWS, Azure, GCP, and DigitalOcean, improving operational consistency and reducing change-related incidents by an estimated 8-15% through standardized runbooks.
 - Improved reliability maturity with proactive monitoring, incident response, post-incident reporting, and operational documentation; contributed to lower incident recurrence and faster recovery (estimated 10-15% MTTR improvement).
 - Built delivery and operations automation scripts and internal guides, reducing onboarding/enablement time for engineers by an estimated 10-15%.
+- Extended the platform to AI workloads with developer environment templates for LangChain and LlamaIndex stacks, an MCP server, and an in-IDE assistant extension.
 
 ### edirect — DevOps Engineer (Bespoke Project Lead)
 **Apr 2020 - Aug 2021 | Liverpool, UK**

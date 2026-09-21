@@ -7,7 +7,7 @@ export async function GET(context) {
   );
   return rss({
     title: "Amin Al Ali Al Darwish",
-    description: "Platform engineering, delivery, and the systems around AI tooling.",
+    description: "Platform engineering, delivery pipelines, and agentic AI: coding agents, MCP, and the guardrails they need around production systems.",
     site: context.site,
     items: posts.map((post) => ({
       title: post.data.title,

@@ -111,7 +111,7 @@ const contacts = (cv ? cv.contact.split("|").map((s) => s.trim()) : []).filter(B
   return { k: "base", value, href: null };
 });
 ---
-<Base title="CV - Amin Al Ali Al Darwish" description="Platform and infrastructure engineering CV - full experience, skills and certifications." path="/cv">
+<Base title="CV - Platform &amp; Agentic AI Engineer - Amin Al Ali Al Darwish" description="CV of Amin Al Ali Al Darwish: platform engineering, Kubernetes, Terraform and multi-cloud, plus agentic AI - coding agents, MCP servers and agent guardrails." path="/cv">
   {cv ? (
     <Fragment>
       <header class="masthead">
@@ -178,7 +178,7 @@ const contacts = (cv ? cv.contact.split("|").map((s) => s.trim()) : []).filter(B
             <h2>Core skills</h2>
             <span class="count">{count(skills.length, "group")}</span>
           </div>
-          <div class="caps cv-skills">
+          <div class="caps">
             {skills.map((s) => (
               <div class="cap">
                 <h3>{s.label}</h3>

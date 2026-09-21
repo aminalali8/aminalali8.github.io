@@ -177,6 +177,10 @@
     font-weight: 600;
   }
   .cap p { margin: 0; font-size: 14.5px; color: var(--muted); }
+  /* Neither grid holds a multiple of three, so the last row is short. Stretching
+     the final cell beats leaving the container's rule colour showing through. */
+  .caps .cap:last-child:nth-child(3n + 1) { grid-column: span 3; }
+  .caps .cap:last-child:nth-child(3n + 2) { grid-column: span 2; }
 
   /* ---------- selected work ---------- */
   .work { display: grid; gap: 0; }
@@ -199,6 +203,10 @@
   .piece h3 { font-size: 21px; font-weight: 600; }
   .piece p { margin: 10px 0 0; font-size: 16px; max-width: 68ch; }
   .piece p + p { margin-top: 10px; }
+  .piece code {
+    font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: .86em;
+    background: var(--surface-2); padding: 1px 5px; border-radius: 2px;
+  }
   .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
   .tag {
     font-size: 11.5px;
@@ -270,6 +278,7 @@
   @media (max-width: 880px) {
     .masthead-grid { grid-template-columns: 1fr; gap: 26px; align-items: start; }
     .caps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .caps .cap:last-child:nth-child(2n + 1) { grid-column: span 2; }
   }
   @media (max-width: 620px) {
     .piece { grid-template-columns: 1fr; gap: 10px; }
@@ -278,6 +287,7 @@
   }
   @media (max-width: 520px) {
     .caps { grid-template-columns: minmax(0, 1fr); }
+    .caps .cap:last-child { grid-column: span 1; }
   }
   @media (prefers-reduced-motion: reduce) {
     * { animation: none !important; transition: none !important; }
@@ -400,19 +410,6 @@
 .cv-actions a.primary { background: var(--accent); border-color: var(--accent); color: var(--paper); }
 .cv-actions a.primary .k { color: var(--paper); opacity: .72; }
 .cv-actions a.primary:hover { color: var(--paper); border-color: var(--accent-ink); background: var(--accent-ink); }
-
-/* The skills grid takes whatever the CV lists, so the last row is often short.
-   Stretching the final cell over the remainder beats leaving the container's
-   rule colour showing through as an empty panel. */
-.cv-skills .cap:last-child:nth-child(3n + 1) { grid-column: span 3; }
-.cv-skills .cap:last-child:nth-child(3n + 2) { grid-column: span 2; }
-@media (max-width: 880px) {
-  .cv-skills .cap:last-child:nth-child(3n + 1) { grid-column: span 2; }
-  .cv-skills .cap:last-child:nth-child(2n + 1) { grid-column: span 2; }
-}
-@media (max-width: 520px) {
-  .cv-skills .cap:last-child { grid-column: span 1; }
-}
 
 .cv-role h3 { font-size: 18.5px; }
 .cv-role .where div { color: var(--muted); }

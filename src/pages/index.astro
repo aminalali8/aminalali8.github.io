@@ -1,18 +1,18 @@
 ---
 import Base from "../layouts/Base.astro";
 ---
-<Base title="Amin Al Ali Al Darwish" path="/">
+<Base title="Amin Al Ali Al Darwish - Platform &amp; Agentic AI Engineer" description="Platform engineer building internal developer platforms, cloud infrastructure and delivery pipelines - and the guardrails AI coding agents need around real systems." path="/">
 
 
   <header class="masthead">
     <div class="masthead-grid">
       <div>
-        <div class="eyebrow">Platform &amp; Infrastructure Engineering</div>
+        <div class="eyebrow">Platform, Infrastructure &amp; Agentic AI Engineering</div>
         <h1>Amin Al Ali<br>Al Darwish</h1>
-        <p class="role-line"><strong>Head of Platform</strong> &middot; Senior DevOps / Platform Engineer &middot; Solutions Architect</p>
+        <p class="role-line"><strong>Head of Platform</strong> &middot; Senior DevOps / Platform Engineer &middot; Solutions Architect &middot; AI &amp; Agentic Systems</p>
       </div>
       <div>
-        <p class="lede">I build the paved roads other engineers ship on: internal platforms, reusable infrastructure, and delivery pipelines that make the safe path the fast one. This page collects the work behind that — the problems that were interesting enough to still think about, and what actually got built.</p>
+        <p class="lede">I build the paved roads other engineers ship on: internal platforms, reusable infrastructure, and delivery pipelines that make the safe path the fast one. Lately that includes the guardrails coding agents need before they go anywhere near a running system. This page collects the work behind that — the problems that were interesting enough to still think about, and what actually got built.</p>
         <div class="contact">
           <span class="pill"><span class="k">base</span> Vacoas, Mauritius (UTC+4)</span>
           <a href="mailto:aminaliali8@gmail.com"><span class="k">mail</span> aminaliali8@gmail.com</a>
@@ -26,7 +26,7 @@ import Base from "../layouts/Base.astro";
   <section>
     <div class="sec-head">
       <h2>What I work on</h2>
-      <span class="count">six practice areas</span>
+      <span class="count">seven practice areas</span>
     </div>
     <div class="caps">
       <div class="cap">
@@ -53,13 +53,17 @@ import Base from "../layouts/Base.astro";
         <h3>Reliability &amp; governance</h3>
         <p>SLO thinking, incident response, postmortems and runbooks; guardrails and least-privilege defaults baked into the delivery flow.</p>
       </div>
+      <div class="cap">
+        <h3>AI &amp; agentic engineering</h3>
+        <p>Coding agents pointed at real codebases, MCP servers and in-IDE assistants, and guardrails scoped to what a change can actually reach rather than to file paths.</p>
+      </div>
     </div>
   </section>
 
   <section>
     <div class="sec-head">
       <h2>Selected work</h2>
-      <span class="count">five pieces</span>
+      <span class="count">eight pieces</span>
     </div>
 
     <div class="work">
@@ -86,6 +90,26 @@ import Base from "../layouts/Base.astro";
       <article class="piece">
         <div class="where"><span class="org">Forward Earth</span>2026</div>
         <div>
+          <h3>Guardrails shaped like the blast radius</h3>
+          <p>Every team that puts a coding agent near a real system reaches for the same guardrail: a list of paths it must not touch. It reads like a permission model and isn't one. An agent told to stay inside <code>service-a</code> obeys, then relaxes a field on a response and stops emitting an event it judged redundant. <code>service-b</code>'s files are byte-identical. <code>service-b</code> is broken.</p>
+          <p>The constraint was written in the filesystem's vocabulary; the blast radius lives in the network's. So the guardrails moved to where the damage actually travels — contracts, events and the edges between services rather than directories.</p>
+          <div class="tags"><span class="tag">Coding agents</span><span class="tag">Guardrails</span><span class="tag">Service contracts</span><span class="tag">Blast radius</span></div>
+        </div>
+      </article>
+
+      <article class="piece">
+        <div class="where"><span class="org">Forward Earth</span>2026 &middot; in progress</div>
+        <div>
+          <h3>Two agents, two sources of truth</h3>
+          <p>Production intent lives in CDK. The local simulation lives in SAM and LocalStack. Keeping them honest is a reconciliation problem, so it gets two narrow agents instead of one that holds both: one reads the CDK, one reads the local stack, and each emits the same event-flow schema — resources, edges, configuration, confidence.</p>
+          <p>The diff between those documents is plain code, not a language model, and the agents only speak through a closed set of typed questions. That is what gives the loop a termination condition instead of two agents talking past each other forever.</p>
+          <div class="tags"><span class="tag">Multi-agent</span><span class="tag">AWS CDK</span><span class="tag">LocalStack</span><span class="tag">SAM</span><span class="tag">Schema-first</span></div>
+        </div>
+      </article>
+
+      <article class="piece">
+        <div class="where"><span class="org">Forward Earth</span>2026</div>
+        <div>
           <h3>Preview environments for async pipelines</h3>
           <p>Scoped adapters that let complex asynchronous data-processing flows run in preview and staging. Most of the work was tracing production behavior across several codebases, so the design fits the orchestration logic already in place rather than replacing it.</p>
           <div class="tags"><span class="tag">Preview environments</span><span class="tag">Async data processing</span><span class="tag">Orchestration</span></div>
@@ -99,6 +123,15 @@ import Base from "../layouts/Base.astro";
           <p>Terraform modules, Helm charts, Kubernetes manifests and Docker baselines pulled into one reusable delivery standard, with CI/CD running on GitHub Actions, GitLab CI, CircleCI and Argo CD.</p>
           <p>Environment setup and manual release effort each dropped by an estimated 10&ndash;20%, and standardized runbooks made production operations across AWS, Azure, GCP and DigitalOcean repeatable rather than heroic.</p>
           <div class="tags"><span class="tag">Terraform</span><span class="tag">Helm</span><span class="tag">Argo CD</span><span class="tag">Multi-cloud</span><span class="tag">GitOps</span><span class="tag">SRE</span></div>
+        </div>
+      </article>
+
+      <article class="piece">
+        <div class="where"><span class="org">Bunnyshell</span>2024 &ndash; 2025</div>
+        <div>
+          <h3>AI workloads on the platform</h3>
+          <p>LLM application stacks needed the same treatment everything else got: reproducible environments rather than a README and a prayer. Ready-made environment templates for LangChain and LlamaIndex stacks, then an MCP server and an in-IDE assistant so the platform was reachable from where engineers already worked.</p>
+          <div class="tags"><span class="tag">LangChain</span><span class="tag">LlamaIndex</span><span class="tag">MCP</span><span class="tag">VS Code extension</span><span class="tag">TypeScript</span></div>
         </div>
       </article>
 
