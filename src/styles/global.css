@@ -292,12 +292,64 @@
 .nav a { color: var(--muted); text-decoration: none; letter-spacing: .04em; text-transform: uppercase; }
 .nav a:hover, .nav a[aria-current="page"] { color: var(--accent-ink); }
 .nav .brand { color: var(--ink); font-weight: 500; margin-right: auto; text-transform: none; letter-spacing: 0; }
-.nav .theme-toggle {
-  font: inherit; color: var(--muted); background: none; border: 0; padding: 0;
-  cursor: pointer; letter-spacing: .04em; text-transform: uppercase;
+/* Theme switch. The rest of the nav is mono capitals, so the control earns its
+   place by being the one object in the bar - a hairline track, an accent thumb
+   that carries the active icon, and a single travel on click. */
+.theme-switch {
+  --track-w: 48px;
+  --track-h: 25px;
+  --pad: 3px;
+  --thumb: calc(var(--track-h) - 2 * var(--pad) - 2px);
+  appearance: none; background: none; border: 0; padding: 0; margin: 0;
+  line-height: 0; cursor: pointer;
 }
-.nav .theme-toggle:hover { color: var(--accent-ink); }
-.nav .theme-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.switch-track {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: var(--track-w);
+  height: var(--track-h);
+  padding-inline: calc(var(--pad) + 2px);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  transition: border-color .2s ease, background-color .2s ease, transform .12s ease;
+}
+.theme-switch:hover .switch-track { border-color: var(--accent); }
+.theme-switch:active .switch-track { transform: scale(.96); }
+.theme-switch:focus-visible .switch-track { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.switch-thumb {
+  position: absolute;
+  top: var(--pad);
+  left: var(--pad);
+  width: var(--thumb);
+  height: var(--thumb);
+  border-radius: 50%;
+  background: var(--accent);
+  transition: transform .26s cubic-bezier(.34, .9, .3, 1);
+}
+.theme-switch[aria-checked="true"] .switch-thumb {
+  transform: translateX(calc(var(--track-w) - var(--track-h)));
+}
+
+.switch-icon {
+  position: relative;
+  z-index: 1;
+  width: 12px;
+  height: 12px;
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  transition: stroke .26s ease;
+}
+.switch-icon.moon { fill: currentColor; stroke: none; color: var(--muted); }
+/* The icon sitting on the thumb flips to the page colour so it reads against
+   the accent fill rather than dissolving into it. */
+.theme-switch[aria-checked="false"] .switch-icon.sun { stroke: var(--paper); }
+.theme-switch[aria-checked="true"] .switch-icon.moon { color: var(--paper); }
 
 /* ---------- blog ---------- */
 .posts { display: grid; gap: 0; }
