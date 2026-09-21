@@ -328,7 +328,12 @@
   }
   @media (max-width: 520px) {
     .caps { grid-template-columns: minmax(0, 1fr); }
-    .caps .cap:last-child { grid-column: span 1; }
+    /* Match the span rules' specificity, or they win on the single-column grid
+       and force an implicit second column - which puts two cards per row and
+       pads the shorter one out to the taller one's height. */
+    .caps .cap:last-child:nth-child(2n + 1),
+    .caps .cap:last-child:nth-child(3n + 1),
+    .caps .cap:last-child:nth-child(3n + 2) { grid-column: auto; }
   }
   @media (prefers-reduced-motion: reduce) {
     * { animation: none !important; transition: none !important; }
@@ -497,3 +502,22 @@
 .soon h3 { font-size: 21px; font-weight: 600; }
 .soon p { margin: 0; color: var(--muted); font-size: 16px; }
 .soon .contact { margin-top: 6px; }
+
+/* The bar holds six items, which will not fit a phone. Rather than let the
+   theme switch orphan itself on a row of its own, the destinations drop to
+   their own row and the identity, the CTA and the switch keep the first.
+   display: contents above that width, so the wrapper changes nothing there. */
+.nav .nav-links { display: contents; }
+@media (max-width: 620px) {
+  .nav { row-gap: 12px; }
+  .nav .brand { order: 1; }
+  .nav .nav-book { order: 2; }
+  .nav .theme-switch { order: 3; }
+  .nav .nav-links {
+    order: 4;
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    flex-basis: 100%;
+  }
+}
