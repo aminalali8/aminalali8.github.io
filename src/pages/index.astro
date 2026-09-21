@@ -1,0 +1,172 @@
+---
+import Base from "../layouts/Base.astro";
+---
+<Base title="Amin Al Ali Al Darwish" path="/">
+
+
+  <header class="masthead">
+    <div class="masthead-grid">
+      <div>
+        <div class="eyebrow">Platform &amp; Infrastructure Engineering</div>
+        <h1>Amin Al Ali<br>Al Darwish</h1>
+        <p class="role-line"><strong>Head of Platform</strong> &middot; Senior DevOps / Platform Engineer &middot; Solutions Architect</p>
+      </div>
+      <div>
+        <p class="lede">I build the paved roads other engineers ship on: internal platforms, reusable infrastructure, and delivery pipelines that make the safe path the fast one. This page collects the work behind that — the problems that were interesting enough to still think about, and what actually got built.</p>
+        <div class="contact">
+          <span class="pill"><span class="k">base</span> Vacoas, Mauritius (UTC+4)</span>
+          <a href="mailto:aminaliali8@gmail.com"><span class="k">mail</span> aminaliali8@gmail.com</a>
+          <a href="tel:+23057358608"><span class="k">tel</span> +230 5735 8608</a>
+          <a href="https://linkedin.com/in/aminaliali" target="_blank" rel="noopener"><span class="k">in</span> /in/aminaliali</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="sec-head">
+      <h2>What I work on</h2>
+      <span class="count">six practice areas</span>
+    </div>
+    <div class="caps">
+      <div class="cap">
+        <h3>Internal developer platforms</h3>
+        <p>Self-service environments, golden paths, environment templates and standardized delivery workflows that cut the toil out of shipping.</p>
+      </div>
+      <div class="cap">
+        <h3>Cloud &amp; infrastructure</h3>
+        <p>AWS, Azure, GCP and DigitalOcean, including hybrid patterns and serverless architectures — Lambda, EventBridge, DynamoDB, S3, CDK/SAM.</p>
+      </div>
+      <div class="cap">
+        <h3>Kubernetes &amp; containers</h3>
+        <p>Kubernetes (CKA), Helm, Argo CD, Docker. Cluster design for production workloads and for local developer sandboxes.</p>
+      </div>
+      <div class="cap">
+        <h3>Infrastructure as code</h3>
+        <p>Terraform modules built for reuse, environment standardization and policy-aligned provisioning across teams.</p>
+      </div>
+      <div class="cap">
+        <h3>CI/CD &amp; release engineering</h3>
+        <p>GitHub Actions, GitLab CI, CircleCI, GitOps and progressive delivery — release paths that stay predictable under change.</p>
+      </div>
+      <div class="cap">
+        <h3>Reliability &amp; governance</h3>
+        <p>SLO thinking, incident response, postmortems and runbooks; guardrails and least-privilege defaults baked into the delivery flow.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <h2>Selected work</h2>
+      <span class="count">five pieces</span>
+    </div>
+
+    <div class="work">
+
+      <article class="piece">
+        <div class="where"><span class="org">Forward Earth</span>2026</div>
+        <div>
+          <h3>Serverless workloads in a local cluster</h3>
+          <p>A Kubernetes-based sandbox for testing AWS Lambda workloads on a developer machine instead of a shared cloud environment. A known tooling limitation blocked the obvious approach, so the cluster runs nested inside its own container runtime.</p>
+          <p>Proved with live event-bus and object-storage integration first, then scaled up to validate a full serverless microservice end to end.</p>
+          <div class="tags"><span class="tag">Kubernetes</span><span class="tag">AWS Lambda</span><span class="tag">EventBridge</span><span class="tag">S3</span><span class="tag">Docker</span></div>
+        </div>
+      </article>
+
+      <article class="piece">
+        <div class="where"><span class="org">Forward Earth</span>2026</div>
+        <div>
+          <h3>Reading a serverless estate</h3>
+          <p>Reverse-engineered and documented a large serverless architecture so the platform could keep evolving on evidence rather than folklore. Writing it down surfaced consolidation opportunities that fed straight into roadmap planning.</p>
+          <div class="tags"><span class="tag">Serverless architecture</span><span class="tag">Architecture documentation</span><span class="tag">Roadmap input</span></div>
+        </div>
+      </article>
+
+      <article class="piece">
+        <div class="where"><span class="org">Forward Earth</span>2026</div>
+        <div>
+          <h3>Preview environments for async pipelines</h3>
+          <p>Scoped adapters that let complex asynchronous data-processing flows run in preview and staging. Most of the work was tracing production behavior across several codebases, so the design fits the orchestration logic already in place rather than replacing it.</p>
+          <div class="tags"><span class="tag">Preview environments</span><span class="tag">Async data processing</span><span class="tag">Orchestration</span></div>
+        </div>
+      </article>
+
+      <article class="piece">
+        <div class="where"><span class="org">Bunnyshell</span>2021 &ndash; 2026</div>
+        <div>
+          <h3>Paved roads across four clouds</h3>
+          <p>Terraform modules, Helm charts, Kubernetes manifests and Docker baselines pulled into one reusable delivery standard, with CI/CD running on GitHub Actions, GitLab CI, CircleCI and Argo CD.</p>
+          <p>Environment setup and manual release effort each dropped by an estimated 10&ndash;20%, and standardized runbooks made production operations across AWS, Azure, GCP and DigitalOcean repeatable rather than heroic.</p>
+          <div class="tags"><span class="tag">Terraform</span><span class="tag">Helm</span><span class="tag">Argo CD</span><span class="tag">Multi-cloud</span><span class="tag">GitOps</span><span class="tag">SRE</span></div>
+        </div>
+      </article>
+
+      <article class="piece">
+        <div class="where"><span class="org">edirect</span>2020 &ndash; 2021</div>
+        <div>
+          <h3>600+ sites, moved in waves</h3>
+          <p>Migrated more than 600 websites across providers with phased cutovers, each wave gated by a runbook and validation checkpoints. Cutover-related incidents fell an estimated 10&ndash;15%; a parallel optimization pass took an estimated 8&ndash;15% off cloud spend without trading away reliability.</p>
+          <div class="tags"><span class="tag">Migration at scale</span><span class="tag">Phased cutover</span><span class="tag">Cost optimization</span><span class="tag">Runbooks</span></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <h2>Track record</h2>
+      <span class="count">2017 &rarr; present</span>
+    </div>
+    <div class="track">
+      <div class="stint">
+        <div class="span"><span class="now"></span>Apr 2026 &rarr; now</div>
+        <div class="what">Platform Engineer <span style="font-weight:400; color:var(--muted)">(contract)</span></div>
+        <div class="org">Forward Earth GmbH</div>
+      </div>
+      <div class="stint">
+        <div class="span">Sep 2021 &rarr; Feb 2026</div>
+        <div class="what">Solutions Architect / DevOps Engineer</div>
+        <div class="org">Bunnyshell</div>
+      </div>
+      <div class="stint">
+        <div class="span">Apr 2020 &rarr; Aug 2021</div>
+        <div class="what">DevOps Engineer, bespoke project lead</div>
+        <div class="org">edirect &middot; Liverpool</div>
+      </div>
+      <div class="stint">
+        <div class="span">Jan 2019 &rarr; May 2020</div>
+        <div class="what">Full Stack Developer / DevOps</div>
+        <div class="org">A4D World &middot; freelance</div>
+      </div>
+      <div class="stint">
+        <div class="span">Mar 2017 &rarr; Jan 2019</div>
+        <div class="what">Backend Developer</div>
+        <div class="org">Above The Fold &middot; Beirut</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <h2>Certifications</h2>
+      <span class="count">three</span>
+    </div>
+    <div class="certs">
+      <div class="cert"><strong>Certified Kubernetes Administrator</strong><span>CKA</span></div>
+      <div class="cert"><strong>Ansible Mastery</strong><span>automation</span></div>
+      <div class="cert"><strong>NLP Practitioner</strong><span>communication</span></div>
+    </div>
+  </section>
+
+  <footer>
+    <h2>Elsewhere</h2>
+    <div class="contact">
+      <a href="mailto:aminaliali8@gmail.com"><span class="k">mail</span> aminaliali8@gmail.com</a>
+      <a href="tel:+23057358608"><span class="k">tel</span> +230 5735 8608</a>
+      <a href="https://linkedin.com/in/aminaliali" target="_blank" rel="noopener"><span class="k">in</span> linkedin.com/in/aminaliali</a>
+    </div>
+    <div class="colophon">Last updated September 2026</div>
+  </footer>
+</Base>

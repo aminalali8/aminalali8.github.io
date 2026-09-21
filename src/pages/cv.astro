@@ -1,0 +1,37 @@
+---
+import Base from "../layouts/Base.astro";
+
+// Rendered from the markdown in ../Personal/cv, copied here by `npm run sync`,
+// so the page and the PDFs can never describe different careers.
+const files = import.meta.glob("../content/cv/*.md", { eager: true });
+const entries = Object.entries(files).map(([p, mod]) => [p.split("/").pop(), mod]);
+const primary =
+  entries.find(([name]) => name === "CV_Platform_Lead.md") ??
+  entries.find(([name]) => name === "CV_Master.md") ??
+  entries[0];
+const Content = primary ? primary[1].Content : null;
+const pdfs = entries.map(([name]) => name.replace(/\.md$/, ".pdf"));
+const label = (f) => f.replace(/^CV_/, "").replace(/\.pdf$/, "").replace(/_/g, " ");
+---
+<Base title="CV - Amin Al Ali Al Darwish" description="Platform and infrastructure engineering CV - full experience, skills and certifications." path="/cv">
+  <section>
+    <div class="sec-head">
+      <h2>Curriculum vitae</h2>
+      <span class="count">pdf below</span>
+    </div>
+
+    {pdfs.length > 0 && (
+      <div class="downloads">
+        {pdfs.map((f) => <a href={`/cv/${f}`} download>{label(f)} &darr; PDF</a>)}
+      </div>
+    )}
+
+    {Content ? (
+      <div class="prose" style="margin-top: 28px;"><Content /></div>
+    ) : (
+      <p class="lede" style="margin-top: 28px;">
+        Run <code>npm run sync</code> to pull the CV in from the vault.
+      </p>
+    )}
+  </section>
+</Base>

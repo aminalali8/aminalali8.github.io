@@ -1,0 +1,36 @@
+---
+import "../styles/global.css";
+
+const { title, description = "Platform engineering, internal developer platforms, cloud infrastructure and reliability.", path = "/" } = Astro.props;
+const site = Astro.site;
+const ogImage = site ? new URL("og.png", site).href : "/og.png";
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="alternate" type="application/rss+xml" title="A4D blog" href="/rss.xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  </head>
+  <body>
+    <div class="wrap">
+      <nav class="nav">
+        <a class="brand" href="/">Amin Al Ali Al Darwish</a>
+        <a href="/" aria-current={path === "/" ? "page" : undefined}>Portfolio</a>
+        <a href="/cv" aria-current={path === "/cv" ? "page" : undefined}>CV</a>
+        <a href="/blog" aria-current={path.startsWith("/blog") ? "page" : undefined}>Blog</a>
+      </nav>
+      <slot />
+    </div>
+  </body>
+</html>
