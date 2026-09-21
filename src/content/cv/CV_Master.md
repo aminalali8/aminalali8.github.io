@@ -19,10 +19,10 @@ Platform and infrastructure leader with hands-on delivery across AWS, Azure, GCP
 ### Forward Earth GmbH - Platform Engineer (Contractor - Advisory & Delivery)
 **Apr 2026 - Present | Remote**
 - Designed and validated a Kubernetes-based sandbox for testing serverless (AWS Lambda) workloads locally, nesting it inside its own container runtime to work around a known tooling limitation; proved it with live event-bus and object-storage integration, then scaled it to a full serverless microservice.
-- Reverse-engineered and documented a large serverless architecture to support ongoing platform evolution, surfacing consolidation opportunities that informed roadmap planning.
-- Scoped preview/staging environment adapters for complex asynchronous data-processing flows, tracing production behavior across several codebases to fit existing orchestration logic.
+- Reverse-engineered and documented a serverless architecture to support ongoing platform evolution.
+- Scoped preview/staging environment adapters for asynchronous data-processing flows, designed to fit existing orchestration rather than replace it.
 - Delivered a local-development integration connecting a development environment to a remote backing service via an opt-in configuration flag, after evaluating multiple integration approaches.
-- Applied coding agents to a large serverless estate, driving them to produce a confidence-scored event-flow map - triggers, transformations and fan-out between components - rather than a flat resource inventory, with unresolved edges flagged for human review.
+- Applied coding agents to serverless architecture discovery, driving them to produce a confidence-scored event-flow map - triggers, transformations and fan-out between components - rather than a flat resource inventory, with unresolved edges flagged for human review.
 - Defined guardrails for coding agents working across service boundaries, scoping constraints to architectural blast radius rather than filesystem paths, after path-based rules proved unable to fence cross-service contract changes.
 
 ### Bunnyshell — Solutions Architect / DevOps Engineer (Power User)
