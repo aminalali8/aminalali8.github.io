@@ -363,6 +363,22 @@
   letter-spacing: .12em; font-size: 13.5px;
 }
 .nav .brand:hover { color: var(--accent-ink); }
+
+/* Persistent CTA in the bar. Uppercase like its neighbours so it keeps the
+   nav's rhythm, filled so it still reads as the one thing to act on. */
+.nav .nav-book {
+  color: var(--paper);
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 5px 9px;
+  border-radius: 2px;
+}
+.nav .nav-book:hover,
+.nav .nav-book:focus-visible {
+  color: var(--paper);
+  background: var(--accent-ink);
+  border-color: var(--accent-ink);
+}
 /* Theme switch. The rest of the nav is mono capitals, so the control earns its
    place by being the one object in the bar - a hairline track, an accent thumb
    that carries the active icon, and a single travel on click. */
