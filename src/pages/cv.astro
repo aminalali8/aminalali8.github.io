@@ -1,92 +1,235 @@
 ---
 import Base from "../layouts/Base.astro";
 
-// The CV is written in ../Personal/cv and exported to HTML + PDF by the vault's
-// build script; `npm run sync` copies both into public/cv. The markdown files
-// are only the manifest - one per CV - because the HTML export is the same
-// document as the PDF, which the markdown render was never going to match.
-// It is shown in an iframe so the export's print stylesheet and the site's
-// stylesheet cannot reach into each other.
-const names = Object.keys(import.meta.glob("../content/cv/*.md"))
-  .map((p) => p.split("/").pop().replace(/\.md$/, ""))
-  .sort();
-const primary = names.includes("CV_Platform_Lead") ? "CV_Platform_Lead" : names[0];
+// The CV is written in ../Personal/cv and copied here by `npm run sync`. The
+// page is rendered from that markdown rather than hand-written, so the web CV
+// and the PDF beside it can never describe different careers.
+const sources = import.meta.glob("../content/cv/*.md", { query: "?raw", import: "default", eager: true });
+const cvs = Object.fromEntries(
+  Object.entries(sources).map(([p, src]) => [p.split("/").pop().replace(/\.md$/, ""), src]),
+);
+const names = Object.keys(cvs).sort();
+const shown = names.includes("CV_Platform_Lead") ? "CV_Platform_Lead" : names[0];
+
+const WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
+const count = (n, noun) => `${WORDS[n] ?? n} ${noun}${n === 1 ? "" : "s"}`;
 const label = (n) => n.replace(/^CV_/, "").replace(/_/g, " ");
+
+// Bullets carry no markup beyond the occasional bold run, so that is all this
+// renders - everything else is escaped on the way through.
+const inline = (s) =>
+  s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+
+function parse(src) {
+  const lines = src.split(/\r?\n/);
+  const start = lines.findIndex((l) => l.startsWith("# "));
+  const sections = [];
+  let current = null;
+  for (const line of lines.slice(start + 3)) {
+    const head = line.match(/^##\s+(.*)$/);
+    if (head) {
+      current = { title: head[1].trim(), lines: [] };
+      sections.push(current);
+    } else if (current) {
+      current.lines.push(line);
+    }
+  }
+  return {
+    name: lines[start].slice(2).trim(),
+    headline: (lines[start + 1] ?? "").replace(/\*\*/g, "").trim(),
+    contact: (lines[start + 2] ?? "").trim(),
+    section: (pattern) => sections.find((s) => new RegExp(pattern, "i").test(s.title)),
+  };
+}
+
+const bullets = (section) =>
+  (section?.lines ?? []).map((l) => l.match(/^-\s+(.*)$/)).filter(Boolean).map((m) => m[1].trim());
+
+function roles(section) {
+  const out = [];
+  let role = null;
+  for (const line of section?.lines ?? []) {
+    const heading = line.match(/^###\s+(.*)$/);
+    if (heading) {
+      role = { heading: heading[1].trim(), dates: "", place: "", points: [] };
+      out.push(role);
+      continue;
+    }
+    if (!role) continue;
+    const meta = line.match(/^\*\*(.+?)\*\*\s*$/);
+    if (meta && !role.dates) {
+      const [dates, place = ""] = meta[1].split("|").map((s) => s.trim());
+      role.dates = dates.replace(/\s+-\s+/, " → ");
+      role.place = place;
+      continue;
+    }
+    const point = line.match(/^-\s+(.*)$/);
+    if (point) role.points.push(point[1].trim());
+  }
+  // "Org - Role" and "Org — Role" both appear; the first separator wins, so a
+  // role title with its own dash stays intact.
+  return out.map((r) => {
+    const split = r.heading.match(/^(.*?)\s+[—–-]\s+(.*)$/);
+    return { ...r, org: split ? split[1] : r.heading, role: split ? split[2] : "" };
+  });
+}
+
+const cv = shown ? parse(cvs[shown]) : null;
+const summary = cv ? (cv.section("^summary")?.lines ?? []).join(" ").trim() : "";
+const skills = cv
+  ? (cv.section("skills")?.lines ?? [])
+      .map((l) => l.match(/^\*\*(.+?):\*\*\s*(.*?)\s*$/))
+      .filter(Boolean)
+      .map((m) => ({ label: m[1], text: m[2] }))
+  : [];
+const experience = cv ? roles(cv.section("experience")) : [];
+const outcomes = cv ? bullets(cv.section("outcome")) : [];
+const certs = cv
+  ? bullets(cv.section("certification")).map((line) => {
+      const text = line.replace(/\*\*/g, "").trim();
+      const split = text.match(/^(.*?)\s*\((.+)\)$/);
+      // "Certified Kubernetes Administrator (CKA)" -> name + short tag; the rest
+      // say "... Certification" in full, which the section heading already does.
+      const name = (split ? split[1] : text).replace(/\s+Certification$/i, "");
+      return { name, tag: split ? split[2] : "" };
+    })
+  : [];
+
+// The headline reads "A | B | C"; the first claim carries the weight.
+const [lead, ...rest] = cv ? cv.headline.split("|").map((s) => s.trim()) : [];
+
+// "Vacoas, Mauritius | +230 ... | mail@... | linkedin.com/in/..." - typed by
+// shape so the CV stays the only place these are written down.
+const contacts = (cv ? cv.contact.split("|").map((s) => s.trim()) : []).filter(Boolean).map((value) => {
+  if (value.includes("@")) return { k: "mail", value, href: `mailto:${value}` };
+  if (/^\+?[\d\s()-]+$/.test(value)) return { k: "tel", value, href: `tel:${value.replace(/[^\d+]/g, "")}` };
+  if (/linkedin/i.test(value)) return { k: "in", value: value.replace(/^linkedin\.com/, ""), href: `https://${value}` };
+  return { k: "base", value, href: null };
+});
 ---
 <Base title="CV - Amin Al Ali Al Darwish" description="Platform and infrastructure engineering CV - full experience, skills and certifications." path="/cv">
-  <section>
-    <div class="sec-head">
-      <h2>Curriculum vitae</h2>
-      <span class="count">{primary ? label(primary) : "not synced"}</span>
-    </div>
-
-    {names.length > 0 && (
-      <div class="downloads">
-        {names.map((n) => <a href={`/cv/${n}.pdf`} download>{label(n)} &darr; PDF</a>)}
-      </div>
-    )}
-
-    {primary ? (
-      <Fragment>
-        <div class="cv-sheet" data-cv-sheet>
-          <div class="cv-box" data-cv-box>
-            <iframe src={`/cv/${primary}.html`} title={`${label(primary)} CV`} scrolling="no"></iframe>
+  {cv ? (
+    <Fragment>
+      <header class="masthead">
+        <div class="masthead-grid">
+          <div>
+            <div class="eyebrow">Curriculum vitae</div>
+            <h1>{cv.name}</h1>
+            <p class="role-line"><strong>{lead}</strong>{rest.map((r) => <Fragment> &middot; {r}</Fragment>)}</p>
+          </div>
+          <div>
+            {summary && <p class="lede">{summary}</p>}
+            <div class="contact">
+              {contacts.map((c) =>
+                c.href ? (
+                  <a href={c.href} target={c.k === "in" ? "_blank" : undefined} rel={c.k === "in" ? "noopener" : undefined}>
+                    <span class="k">{c.k}</span> {c.value}
+                  </a>
+                ) : (
+                  <span class="pill"><span class="k">{c.k}</span> {c.value}</span>
+                ),
+              )}
+            </div>
+            <div class="cv-actions">
+              <a class="primary" href={`/cv/${shown}.pdf`} download>
+                <span class="k">pdf</span> Download this CV
+              </a>
+              {names.filter((n) => n !== shown).map((n) => (
+                <a href={`/cv/${n}.pdf`} download><span class="k">pdf</span> {label(n)} version</a>
+              ))}
+            </div>
           </div>
         </div>
-        <p class="cv-fallback">
-          <a href={`/cv/${primary}.html`} target="_blank" rel="noopener">Open the CV on its own page &rarr;</a>
-        </p>
-      </Fragment>
-    ) : (
-      <p class="lede" style="margin-top: 28px;">
-        Run <code>npm run sync</code> to pull the CV in from the vault.
-      </p>
-    )}
-  </section>
+      </header>
+
+      {experience.length > 0 && (
+        <section>
+          <div class="sec-head">
+            <h2>Experience</h2>
+            <span class="count">{count(experience.length, "role")}</span>
+          </div>
+          <div class="work">
+            {experience.map((r) => (
+              <article class="piece cv-role">
+                <div class="where">
+                  <span class="org">{r.org}</span>
+                  <div>{r.dates}</div>
+                  {r.place && <div>{r.place}</div>}
+                </div>
+                <div>
+                  {r.role && <h3>{r.role}</h3>}
+                  <ul class="cv-bullets">
+                    {r.points.map((p) => <li set:html={inline(p)} />)}
+                  </ul>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {skills.length > 0 && (
+        <section>
+          <div class="sec-head">
+            <h2>Core skills</h2>
+            <span class="count">{count(skills.length, "group")}</span>
+          </div>
+          <div class="caps cv-skills">
+            {skills.map((s) => (
+              <div class="cap">
+                <h3>{s.label}</h3>
+                <p>{s.text}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {outcomes.length > 0 && (
+        <section>
+          <div class="sec-head">
+            <h2>Selected outcomes</h2>
+            <span class="count">{count(outcomes.length, "outcome")}</span>
+          </div>
+          <ul class="cv-bullets cv-outcomes">
+            {outcomes.map((o) => <li set:html={inline(o)} />)}
+          </ul>
+        </section>
+      )}
+
+      {certs.length > 0 && (
+        <section>
+          <div class="sec-head">
+            <h2>Certifications</h2>
+            <span class="count">{count(certs.length, "certification")}</span>
+          </div>
+          <div class="certs">
+            {certs.map((c) => (
+              <div class="cert"><strong>{c.name}</strong>{c.tag && <span>{c.tag}</span>}</div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <footer>
+        <h2>Elsewhere</h2>
+        <div class="contact">
+          {contacts.filter((c) => c.href).map((c) => (
+            <a href={c.href} target={c.k === "in" ? "_blank" : undefined} rel={c.k === "in" ? "noopener" : undefined}>
+              <span class="k">{c.k}</span> {c.value}
+            </a>
+          ))}
+        </div>
+      </footer>
+    </Fragment>
+  ) : (
+    <section>
+      <div class="sec-head"><h2>Curriculum vitae</h2><span class="count">not synced</span></div>
+      <p class="lede">Run <code>npm run sync</code> to pull the CV in from the vault.</p>
+    </section>
+  )}
 </Base>
-
-<script>
-  // The export is drawn for a 794px-wide A4 page at a print font size, so it is
-  // scaled to the column instead of shown at 1:1 (unreadably small on a desktop
-  // column, overflowing on a phone). Below MIN the text stops being legible, so
-  // the sheet scrolls sideways rather than shrinking further - which is what a
-  // narrow screen gets. Without JS the iframe still renders, just unscaled.
-  const A4 = 794;
-  const MIN = 0.85;
-  const MAX = 1.35;
-
-  const sheet = document.querySelector("[data-cv-sheet]");
-  const box = sheet?.querySelector("[data-cv-box]");
-  const frame = box?.querySelector("iframe");
-
-  if (sheet && box && frame) {
-    const fit = () => {
-      const doc = frame.contentDocument;
-      if (!doc?.body) return;
-      const style = getComputedStyle(sheet);
-      const gutters = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
-      const scale = Math.min(Math.max((sheet.clientWidth - gutters) / A4, MIN), MAX);
-
-      // Width first: measured at any other width the two-column grid reflows and
-      // reports a height that has nothing to do with what ends up on screen.
-      // Height 0 then makes the document report its own height rather than the
-      // frame's.
-      frame.style.width = `${A4}px`;
-      frame.style.transform = `scale(${scale})`;
-      frame.style.height = "0px";
-      const height = Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight);
-      frame.style.height = `${height}px`;
-      // transform does not change layout size, so the box carries the scaled
-      // footprint - that is what gives the sheet its height and scroll extent.
-      box.style.width = `${A4 * scale}px`;
-      box.style.height = `${height * scale}px`;
-    };
-
-    frame.addEventListener("load", () => {
-      fit();
-      // Fonts settle after load and change the height, so re-fit on any reflow.
-      new ResizeObserver(fit).observe(frame.contentDocument.body);
-    });
-    window.addEventListener("resize", fit);
-  }
-</script>

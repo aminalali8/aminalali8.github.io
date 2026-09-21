@@ -91,10 +91,8 @@ if (fs.existsSync(CV_SRC)) {
   console.warn(`sync: ${CV_SRC} not found - keeping the committed CV as-is`);
 }
 
-// The .html exports are the same document as the .pdf, and are what the CV page
-// embeds; the .pdf is the download.
 if (fs.existsSync(PDF_SRC)) {
-  for (const f of fs.readdirSync(PDF_SRC).filter((f) => /\.(pdf|html)$/.test(f))) {
+  for (const f of fs.readdirSync(PDF_SRC).filter((f) => f.endsWith(".pdf"))) {
     fs.copyFileSync(path.join(PDF_SRC, f), path.join(PDF_OUT, f));
     console.log(`  + public/cv/${f}`);
   }

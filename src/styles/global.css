@@ -323,40 +323,43 @@
 .prose pre code { background: none; padding: 0; }
 .prose img { max-width: 100%; height: auto; }
 
-.downloads { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
-.downloads a {
+/* ---------- cv ---------- */
+.cv-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+.cv-actions a {
   font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 12.5px;
   text-decoration: none; color: var(--ink); background: var(--surface);
   border: 1px solid var(--line); padding: 9px 13px; border-radius: 2px;
+  display: inline-flex; gap: 8px; align-items: center;
 }
-.downloads a:hover { border-color: var(--accent); color: var(--accent-ink); }
+.cv-actions a:hover { border-color: var(--accent); color: var(--accent-ink); }
+.cv-actions a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.cv-actions .k { color: var(--muted); }
+/* --paper rather than white: the accent is a dark green in light mode and a
+   light mint in dark, so the label has to flip with it. */
+.cv-actions a.primary { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+.cv-actions a.primary .k { color: var(--paper); opacity: .72; }
+.cv-actions a.primary:hover { color: var(--paper); border-color: var(--accent-ink); background: var(--accent-ink); }
+
+/* The skills grid takes whatever the CV lists, so the last row is often short.
+   Stretching the final cell over the remainder beats leaving the container's
+   rule colour showing through as an empty panel. */
+.cv-skills .cap:last-child:nth-child(3n + 1) { grid-column: span 3; }
+.cv-skills .cap:last-child:nth-child(3n + 2) { grid-column: span 2; }
+@media (max-width: 880px) {
+  .cv-skills .cap:last-child:nth-child(3n + 1) { grid-column: span 2; }
+  .cv-skills .cap:last-child:nth-child(2n + 1) { grid-column: span 2; }
+}
+@media (max-width: 520px) {
+  .cv-skills .cap:last-child { grid-column: span 1; }
+}
+
+.cv-role h3 { font-size: 18.5px; }
+.cv-role .where div { color: var(--muted); }
+.cv-bullets { margin: 10px 0 0; padding-left: 18px; display: grid; gap: 7px; max-width: 72ch; }
+.cv-bullets li { font-size: 15.5px; }
+.cv-bullets li::marker { color: var(--accent); }
+.cv-outcomes { margin-top: 0; }
 
 @media (max-width: 620px) {
-  .post-row { grid-template-columns: 1fr; gap: 8px; }
-}
-
-/* The CV export rendered in place - see src/pages/cv.astro for the scaling. */
-.cv-sheet {
-  margin-top: 26px;
-  padding: 18px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: 3px;
-  box-shadow: var(--shadow);
-}
-.cv-box { height: 1500px; }
-.cv-sheet iframe {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border: 0;
-  transform-origin: top left;
-}
-.cv-fallback { margin-top: 12px; font-size: 13px; color: var(--muted); }
-.cv-fallback a { color: var(--accent-ink); }
-
-@media (max-width: 620px) {
-  .cv-sheet { padding: 12px; }
+  .cv-role .where { display: flex; flex-wrap: wrap; gap: 4px 10px; }
 }
