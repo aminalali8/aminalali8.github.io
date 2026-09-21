@@ -13,7 +13,7 @@ Platform and infrastructure leader with hands-on delivery across AWS, Azure, GCP
 **Observability and Reliability (SRE):** SLO thinking, incident response, postmortems, runbooks, proactive monitoring  
 **Security and Governance:** guardrails, least-privilege mindset, security baked into delivery workflows  
 **Languages and Scripting:** Bash, Go, Python, PHP, Node.js, Java  
-**AI and Agentic Engineering:** coding agents in production codebases, MCP servers, in-IDE assistants, agent guardrails and blast-radius scoping, LLM application environments (LangChain, LlamaIndex)
+**AI and Agentic Engineering:** coding agents in production codebases, repository-analysis agents, MCP servers, in-IDE assistants, agent guardrails and blast-radius scoping, LLM application environments (LangChain, LlamaIndex)
 
 ## Professional Experience
 ### Forward Earth GmbH - Platform Engineer (Contractor - Advisory & Delivery)
@@ -34,6 +34,7 @@ Platform and infrastructure leader with hands-on delivery across AWS, Azure, GCP
 - Improved reliability maturity with proactive monitoring, incident response, post-incident reporting, and operational documentation; contributed to lower incident recurrence and faster recovery (estimated 10-15% MTTR improvement).
 - Built delivery and operations automation scripts and internal guides, reducing onboarding/enablement time for engineers by an estimated 10-15%.
 - Extended the platform to AI workloads with developer environment templates for LangChain and LlamaIndex stacks, an MCP server, and an in-IDE assistant extension.
+- Helped build an agentic system that generates Dockerfiles directly from a repository's codebase, shaping the approach and validating its output across real project structures so services could be containerized without hand-written build files.
 
 ### edirect — DevOps Engineer (Bespoke Project Lead)
 **Apr 2020 - Aug 2021 | Liverpool, UK**

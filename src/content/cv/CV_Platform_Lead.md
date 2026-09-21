@@ -11,7 +11,7 @@ Platform engineering leader focused on building internal developer platforms (ID
 **Platform Tooling:** Kubernetes, Helm, Argo CD, Docker, Terraform, GitOps  
 **Delivery and Reliability:** CI/CD, observability, SLO-aligned operations, incident management, postmortems, runbooks  
 **Governance:** guardrails, policy-aware implementations, secure-by-default delivery patterns  
-**AI and Agentic Engineering:** coding agents in production codebases, MCP server development, agent guardrails scoped to architectural blast radius, LLM application environments (LangChain, LlamaIndex)
+**AI and Agentic Engineering:** coding agents in production codebases, repository-analysis agents, MCP server development, agent guardrails scoped to architectural blast radius, LLM application environments (LangChain, LlamaIndex)
 
 ## Professional Experience
 ### Forward Earth GmbH - Platform Engineer (Contractor - Advisory & Delivery)
@@ -31,6 +31,7 @@ Platform engineering leader focused on building internal developer platforms (ID
 - Built platform operations discipline across multi-cloud environments through monitoring, incident handling, and documented runbooks, improving incident response readiness and recovery speed (estimated 10-15% MTTR improvement).
 - Authored internal tutorials and operational guides to improve platform adoption and shorten onboarding by an estimated 10-15%.
 - Extended the platform to AI workloads with developer environment templates for LangChain and LlamaIndex stacks, an MCP server, and an in-IDE assistant extension.
+- Helped build an agentic system that generates Dockerfiles directly from a repository's codebase, shaping the approach and validating its output across real project structures so services could be containerized without hand-written build files.
 
 ### edirect — DevOps Engineer (Bespoke Project Lead)
 **Apr 2020 - Aug 2021 | Liverpool, UK**
