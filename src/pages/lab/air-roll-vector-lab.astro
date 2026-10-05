@@ -1,0 +1,43 @@
+---
+import Base from "../../layouts/Base.astro";
+// The lab itself is a prebuilt, minified bundle in public/apps/air-roll-vector-lab/, built from its own
+// (private) repo with `npm run publish:site`. This page frames it full-width under the site nav.
+const APP = "/apps/air-roll-vector-lab/";
+---
+<Base title="Air Roll Vector Lab - Lab - Amin Al Ali Al Darwish" description="A Rocket League car on a field with live velocity, momentum, force and flight-path arrows. Air roll turns the car; only boost changes where it goes." path="/lab">
+  <div class="lab-bar">
+    <div class="sec-head">
+      <h2>Air Roll Vector Lab</h2>
+      <span class="count">gamepad or keyboard</span>
+    </div>
+    <div class="contact">
+      <a href="/lab"><span class="k">back</span> Lab</a>
+      <a href={APP} target="_blank" rel="noopener"><span class="k">open</span> Full window</a>
+    </div>
+  </div>
+  <iframe id="lab-frame" class="lab-frame" src={APP} title="Air Roll Vector Lab" allow="gamepad; fullscreen"></iframe>
+</Base>
+
+<style>
+  .lab-bar { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 14px; padding-block: 20px 14px; }
+  .lab-bar .sec-head { margin: 0; }
+  /* Full width, out of the 1080px wrap: the lab needs the whole screen. */
+  .lab-frame {
+    display: block; width: 100vw; margin-left: calc(50% - 50vw);
+    height: calc(100dvh - 172px); min-height: 640px; /* the nav and the bar above take ~172px */
+    border: 0; border-top: 1px solid var(--line);
+  }
+</style>
+
+<script is:inline>
+  // Keep the lab's theme in step with the site's switch. Both are on this origin.
+  (() => {
+    const frame = document.getElementById("lab-frame");
+    const root = document.documentElement;
+    const system = matchMedia("(prefers-color-scheme: dark)");
+    const send = () => frame.contentWindow?.postMessage({ theme: root.dataset.theme || (system.matches ? "dark" : "light") }, location.origin);
+    frame.addEventListener("load", () => { send(); frame.focus(); });
+    new MutationObserver(send).observe(root, { attributes: true, attributeFilter: ["data-theme"] });
+    system.addEventListener("change", send);
+  })();
+</script>

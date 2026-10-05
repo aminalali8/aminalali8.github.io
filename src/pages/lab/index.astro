@@ -1,0 +1,30 @@
+---
+import Base from "../../layouts/Base.astro";
+---
+<Base title="Lab - Side projects - Amin Al Ali Al Darwish" description="Side projects built for fun: interactive physics and tools, playable in the browser." path="/lab">
+  <section>
+    <div class="sec-head">
+      <h2>Lab</h2>
+      <span class="count">one project</span>
+    </div>
+
+    <div class="work">
+      <article class="piece">
+        <div class="where"><span class="org">Game physics</span>2026</div>
+        <div>
+          <h3><a class="lab-link" href="/lab/air-roll-vector-lab">Air roll turns the car; only boost changes where it goes</a></h3>
+          <p>A Rocket League car hitbox on a field, driven with a gamepad, with live arrows for velocity, momentum, the forces on it and where it will be in 0.75 seconds. Air roll spins the roof arrow while the path stays on its arc; boost is the one input that bends it.</p>
+          <p>Rocket League air physics at a fixed 120 Hz, a rigid-box landing that tips and settles on whatever face it hits, ground driving with powerslide drifts, and an optional ceiling.</p>
+          <div class="tags"><span class="tag">Three.js</span><span class="tag">Rigid-body physics</span><span class="tag">Gamepad API</span><span class="tag">Rocket League</span></div>
+          <div class="contact lab-actions"><a href="/lab/air-roll-vector-lab"><span class="k">play</span> Air Roll Vector Lab</a></div>
+        </div>
+      </article>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .lab-link { color: var(--ink); text-decoration: none; }
+  .lab-link:hover { color: var(--accent-ink); }
+  .lab-actions { margin-top: 18px; }
+</style>
